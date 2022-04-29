@@ -1,0 +1,44 @@
+\begin{table*}
+    \centering
+    \scriptsize
+    \caption[Impact of a varying number of topics \gls{numtopics} on \acrshort{mrr@10}]
+    {
+        Impact of a varying number of topics \gls{numtopics}
+        on \acrshort{mrr@10} obtained on the \mozff{} project with 10-fold cross validation.
+        \gls{dratom-theta}, \gls{dratom} and \gls{drasim} use the same trained \gls{atm}.
+        The mean over the cross-validation and standard deviation are reported.
+        The best hyperparameter setting for \gls{dretom-tradeoff}
+        and the best distance metric for \gls{drasim} are highlighted. The table only shows the results for $\theta \le 0.4$, as in not any case best results where achieved with a greater value for $\theta$.
+    }
+    \label{tab:exp6-mozilla-firefox-20-30-40-50-60-mrr@10}
+    \begin{tabular}{ccccccccccccc}
+    \toprule
+                                                                      
+    \textbf{Model} & \textbf{Parameter} &         \textbf{\gls{numtopics}=20} &        \textbf{\gls{numtopics}=30} &        \textbf{\gls{numtopics}=40} &        \textbf{\gls{numtopics}=50} &        \textbf{\gls{numtopics}=60} \\
+    \midrule
+    \multirow{5}{1.5cm}{\gls{dretom} \gensim{}} & \gls{dretom-tradeoff}=0.0 &            10.4 $\pm$ 2.8 &            11.1 $\pm$ 2.7 &            11.6 $\pm$ 2.7 &            11.9 $\pm$ 3.2 &            11.9 $\pm$ 2.6 \\
+                                                                      & \gls{dretom-tradeoff}=0.1 &  \bfseries 11.0 $\pm$ 3.0 &  \bfseries 11.6 $\pm$ 2.9 &  \bfseries 12.0 $\pm$ 2.8 &  \bfseries 12.3 $\pm$ 3.4 &            12.2 $\pm$ 2.8 \\
+                                                                      & \gls{dretom-tradeoff}=0.2 &            10.1 $\pm$ 2.7 &            11.3 $\pm$ 2.9 &            11.8 $\pm$ 2.9 &            12.1 $\pm$ 3.5 &  \bfseries 12.3 $\pm$ 2.9 \\
+                                                                      & \gls{dretom-tradeoff}=0.3 &             8.7 $\pm$ 2.1 &            10.3 $\pm$ 2.9 &            11.0 $\pm$ 2.7 &            11.5 $\pm$ 3.4 &            11.7 $\pm$ 2.8 \\
+                                                                      & \gls{dretom-tradeoff}=0.4 &             7.7 $\pm$ 1.6 &             9.3 $\pm$ 2.7 &            10.0 $\pm$ 2.4 &            10.8 $\pm$ 3.1 &            10.9 $\pm$ 2.7 \\
+    \midrule
+    \multirow{5}{1.5cm}{\gls{dretom} \mallet{}} & \gls{dretom-tradeoff}=0.0 &            12.7 $\pm$ 3.3 &            13.4 $\pm$ 3.1 &            14.3 $\pm$ 3.6 &            15.0 $\pm$ 3.9 &            15.8 $\pm$ 3.7 \\
+                                                                      & \gls{dretom-tradeoff}=0.1 &  \bfseries 13.7 $\pm$ 3.4 &  \bfseries 14.2 $\pm$ 3.1 &            15.1 $\pm$ 3.8 &            15.8 $\pm$ 4.1 &            16.6 $\pm$ 3.9 \\
+                                                                      & \gls{dretom-tradeoff}=0.2 &            13.2 $\pm$ 3.1 &            14.1 $\pm$ 2.7 &  \bfseries 15.1 $\pm$ 3.7 &  \bfseries 15.8 $\pm$ 3.9 &  \bfseries 16.7 $\pm$ 3.9 \\
+                                                                      & \gls{dretom-tradeoff}=0.3 &            12.0 $\pm$ 2.7 &            13.1 $\pm$ 2.2 &            14.3 $\pm$ 3.4 &            15.0 $\pm$ 3.3 &            16.4 $\pm$ 3.6 \\
+                                                                      & \gls{dretom-tradeoff}=0.4 &            10.3 $\pm$ 2.3 &            11.9 $\pm$ 2.0 &            13.0 $\pm$ 2.9 &            14.0 $\pm$ 2.5 &            15.6 $\pm$ 3.1 \\
+    \midrule
+    \multirow{5}{1.5cm}{\gls{dratom-theta}} & \gls{dretom-tradeoff}=0.0 &            14.0 $\pm$ 2.7 &            15.5 $\pm$ 3.8 &            15.8 $\pm$ 3.8 &            15.5 $\pm$ 3.8 &            16.0 $\pm$ 3.3 \\
+                                                                      & \gls{dretom-tradeoff}=0.1 &  \bfseries 14.2 $\pm$ 2.6 &            15.8 $\pm$ 3.8 &            16.5 $\pm$ 3.8 &            16.1 $\pm$ 3.9 &            16.6 $\pm$ 3.4 \\
+                                                                      & \gls{dretom-tradeoff}=0.2 &            14.0 $\pm$ 2.5 &  \bfseries 15.9 $\pm$ 3.8 &            16.9 $\pm$ 3.9 &            16.5 $\pm$ 3.9 &            17.1 $\pm$ 3.4 \\
+                                                                      & \gls{dretom-tradeoff}=0.3 &            13.7 $\pm$ 2.4 &            15.8 $\pm$ 3.7 &  \bfseries 16.9 $\pm$ 3.7 &            16.7 $\pm$ 3.8 &            17.4 $\pm$ 3.3 \\
+                                                                      & \gls{dretom-tradeoff}=0.4 &            13.2 $\pm$ 2.4 &            15.6 $\pm$ 3.6 &            16.8 $\pm$ 3.6 &  \bfseries 16.7 $\pm$ 3.6 &  \bfseries 17.6 $\pm$ 3.2 \\
+    \midrule
+    \multirow{1}{1.5cm}{\gls{dratom}} & n/a &  \bfseries 13.3 $\pm$ 2.3 &  \bfseries 14.9 $\pm$ 2.9 &  \bfseries 16.0 $\pm$ 4.2 &  \bfseries 15.8 $\pm$ 4.2 &  \bfseries 16.1 $\pm$ 3.7 \\
+    \midrule
+    \multirow{3}{1.5cm}{\gls{drasim}} & \gls{js} &   \bfseries 6.7 $\pm$ 2.0 &   \bfseries 8.6 $\pm$ 1.5 &            10.8 $\pm$ 2.6 &  \bfseries 12.0 $\pm$ 2.4 &  \bfseries 12.7 $\pm$ 2.1 \\
+                                                                      & \gls{cosine} &             6.6 $\pm$ 2.0 &             8.6 $\pm$ 1.6 &  \bfseries 10.9 $\pm$ 2.7 &            12.0 $\pm$ 2.3 &            12.6 $\pm$ 2.0 \\
+                                                                      & \gls{manhattan} &             5.1 $\pm$ 1.9 &             6.9 $\pm$ 1.7 &             8.5 $\pm$ 2.3 &            10.1 $\pm$ 2.5 &            10.8 $\pm$ 2.3 \\
+    \bottomrule
+    \end{tabular}
+\end{table*}

@@ -1,0 +1,18 @@
+\begin{table*}[t]
+  \centering
+  \caption{Features of used \ac{LDA} and \ac{ATM} implementations of \textit{Gensim} and \textit{MALLET}}
+  \label{tab:implementations}
+  \begin{tabular}{ccccccc}
+  \toprule
+  {} &                                                                                   \ldamodel{} & \ldamulticore{} & \atmodel{} &                                                                                           \paralleltopicmodel{} \\
+  \midrule
+  project                                    &                                                                                   \textit{Gensim} &       \textit{Gensim} &  \textit{Gensim} &                                                                                                       \mallet{} \\
+  varying \gls{numtopics}                    &                                                                                        \yes &            \yes &       \yes &                                                                                                            \yes \\
+  symmetrical \gls{alpha}/\gls{beta}           &                                                                                        \yes &            \yes &       \yes &                                                                                                            \yes  \\
+  optimized symmetrical \gls{alpha}/\gls{beta} &                                                                                         \no &             \no &        \no &                                                                                                            \yes  \\
+  optimized asymmetrical \gls{alpha}           &                                                                                        \yes &             \no &       \yes &                                                                                                            \yes  \\
+  optimized asymmetrical \gls{beta}            &                                                                                        \yes &             \no &       \yes &  \no\footnotemark[4] \\
+  parallelism                                &  \yes\footnotemark[5] &          \yes{} &        \no &                                                                                                          \yes{}  \\
+  \bottomrule
+  \end{tabular}
+\end{table*}
