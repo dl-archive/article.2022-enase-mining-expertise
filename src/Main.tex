@@ -424,6 +424,9 @@
 \acro{MAP}{Mean Average Precision}
 \end{acronym}
 
+\usepackage{eso-pic}
+\AddToShipoutPictureFG{\AtPageLowerLeft{\put(\LenToUnit{0.5\paperwidth},\LenToUnit{6mm}){\makebox[0pt][c]{\fontsize{6.5}{8}\selectfont\color{gray}Author's revised version (2026-11-11). Version of record: https://doi.org/10.5220/0011045100003176}}}}
+
 \begin{document}
 
 \title{Mining Developer Expertise from Bug Tracking Systems using~the~Author-Topic~Model}
@@ -435,7 +438,7 @@
     Willy Scheibel\orcidAuthor{0000-0002-7885-9857},\\
     Daniel Limberger\orcidAuthor{0000-0002-9111-4809},
     Matthias Trapp\orcidAuthor{0000-0003-3861-5759},
-    and Jürgen Döllner}
+    and Jürgen Döllner\,\href{https://orcid.org/0000-0002-8981-8583}{\raisebox{-0.15ex}{\epsfig{file=orcid.eps,width=0.25cm}}}}
     \affiliation{Hasso Plattner Institute, Digital Engineering Faculty, University of Potsdam, Germany}
 }
 
@@ -447,12 +450,12 @@
 During the software development process, software defects, so-called bugs, are captured in a semi-structured manner in a bug tracking system using textual components and categorical features.
 It is the task of the triage owner to assign open bugs to developers with the required skills and expertise. 
 This task, known as \textsl{bug triaging}, requires in-depth knowledge about a developer's skills.
-Various machine learning techniques have been proposed to automate this task, most of these approaches apply topic models, especially Latent Dirichlet Allocation, for mining the textual components of bug reports.
+Various machine learning techniques have been proposed to automate this task; most of these approaches apply topic models, especially Latent Dirichlet Allocation, for mining the textual components of bug reports.
 However, none of the proposed approaches explicitly models a developer's expertise.
 In most cases, these algorithms are treated as a black box, as they allow no explanation about their recommendation.
 In this work, we show how the Author-Topic Model, a variant of Latent Dirichlet Allocation, can be used to capture a developer's expertise in the latent topics of a corpus of bug reports from the model itself.
 Furthermore, we present three novel bug triaging techniques based on the Author-Topic Model.
-We compare our approach against a baseline model, that is based on Latent Dirichlet Allocation, on a dataset of 18\thinspace{}269 bug reports from the Mozilla Firefox project collected between July 1999 to June 2016.
+We compare our approach against a baseline model, which is based on Latent Dirichlet Allocation, on a dataset of 18\thinspace{}269 bug reports from the Mozilla Firefox project collected between July 1999 and June 2016.
 The results show that the Author-Topic Model can outperform the baseline approach in terms of the Mean Reciprocal Rank.
 }
 
@@ -495,8 +498,8 @@ The results show that our modification of \ac{DRETOM} is able to outperform the 
 The remainder of this work is structured as follows:
 Section \ref{section: related work} presents existing approaches for bug triaging, which apply \ac{LDA} for modeling the textual components of bug reports. 
 In Section \ref{section: lda} we give a short overview of \ac{LDA} and its variant \ac{ATM}.
-We detail our three novel bug triaging algorithms, based on the \ac{ATM}, in section \ref{section: atm}.
-We describe the experimental setup in section \ref{section: experiment} and discuss its results in section \ref{section: results}.
+We detail our three novel bug triaging algorithms, based on the \ac{ATM}, in Section \ref{section: atm}.
+We describe the experimental setup in Section \ref{section: experiment} and discuss its results in Section \ref{section: results}.
 Section \ref{section: conclusion} concludes this paper and outlines directions for future work.
 
 \section{\uppercase{Related Work}}
@@ -524,27 +527,27 @@ First, they use in addition to a bug report's title and description its system c
 Subsequently, they create an activity profile for each developer, so that it can be used alongside the topic associations to recommend a suitable developer.
 
 Zhang \etal also utilized \ac{LDA} to extract topics from historical bug reports~\cite{zhang2014novel}.
-In addition, they analyzed the relationship between the developers, \ie assignees, commenters, and the bug reporter whose bug reports attracted the most number of comments.
+In addition, they analyzed the relationship between the developers, \ie assignees, commenters, and the bug reporter whose bug reports attracted the highest number of comments.
 
 Yang \etal proposed a new method by utilizing not only the natural language for \ac{LDA}, but multiple features including product, component, severity, and priority~\cite{yang2014towards}.
 They extract the set of candidate developers who have contributed to the bug reports having the same combination of topic and features and rank them by the scores determined using their number of activities, \ie a developer's number of commits, comments, attachments, and bug assignments.
 
 Zhang \etal use structural information from the submitter-bug-commenter heterogeneous network to improve the quality of developer recommendations~\cite{zhang2014butter}.
-Through this network, submitters and commenters obtain the topic information propagated from bugs, which adjust the topic distributions obtained by the \ac{LDA} model.
+Through this network, submitters and commenters obtain the topic information propagated from bugs, which adjusts the topic distributions obtained by the \ac{LDA} model.
 
 Nguyen \etal used the inferred topics from \ac{LDA} along with the bug fixer and the severity levels of historical bug reports as an input of a log-normal regression model for predicting defect resolution time~\cite{nguyen2014topic}.
 Based on each developer's mean time to repair and dependent on the most prominent topic of the open bug report, they recommend the developer that is likely the fastest in resolving the issue.
 
-In a later work, Zhang \etal proposed a new similarity measure to find related historical bug reports based on its title, description, product, and component~\cite{zhang2016towards}.
+In a later work, Zhang \etal proposed a new similarity measure to find related historical bug reports based on their title, description, product, and component~\cite{zhang2016towards}.
 Their approach uses 18 hyperparameters that need to be tuned to weight the individual features, of which only the number of topics is a hyperparameter of the underlying \ac{LDA} model.
-The other hyperparameters of \ac{LDA} remain on the default settings of the respective \ac{LDA} implementation.
-For the actual developer recommendation, that also incorporates a developer's number of comments, fixed and reopened bugs, there are two more hyperparameters to be tuned.
+The other hyperparameters of \ac{LDA} remain at the default settings of the respective \ac{LDA} implementation.
+For the actual developer recommendation, which also incorporates a developer's number of comments, fixed and reopened bugs, there are two more hyperparameters to be tuned.
 
 Xia \etal proposed the \ac{MTM}, a method that extends the basic topic modeling algorithm \ac{LDA}~\cite{xia2016improving}.
 The \ac{MTM} includes a bug report's feature combination, \eg its product and component, as an additionally observed variable, and models the topic distributions for each feature combination.
 Their approach recommends the developers based on the affinity score towards a topic and the feature combination.
 
-A detailed overview on how topic models are used for software engineering tasks in general is presented by Chen \etal (2016).~\nocite{chen2016survey}
+A detailed overview of how topic models are used for software engineering tasks in general is presented by Chen \etal (2016).~\nocite{chen2016survey}
 
 \section{Latent Dirichlet Allocation}
 \label{section: lda}
@@ -566,9 +569,9 @@ A detailed overview on how topic models are used for software engineering tasks 
     \label{fig:dirichlet-alpha-priors}
 \end{figure*}
 
-In this section we give a short overview on \ac{LDA} required to understand the rest of our work.
+In this section we give a short overview of \ac{LDA} required to understand the rest of our work.
 Topic models are a widely used technique for mining the semantic structure of a collection of documents, \eg for summarization or classification tasks~\cite{aggarwal2012mining}.
-The by far most popular topic model for mining software repositories is \ac{LDA} proposed by Blei \etal~\cite{chen2016survey,Sun2016ExploringSurvey}.
+By far the most popular topic model for mining software repositories is \ac{LDA} proposed by Blei \etal~\cite{chen2016survey,Sun2016ExploringSurvey}.
 Given a corpus $\mathcal{C} = \{d_1, \dots, d_m\}$, where each element $d_1, \dots, d_m$ denotes a single document stored as a \ac{BOW}, \ac{LDA} extracts latent topics $\varphi_1, \dots, \varphi_K$, where the number of topics $K$ is a hyperparameter of the model~\cite{blei2003latent}.
 The topics $\varphi_1, \dots, \varphi_K$ are given as multinomial distributions over the vocabulary $\mathcal{V}$ of the corpus $\mathcal{C}$.
 In most cases the most probable words are a strong indicator for the \enquote{concept} underlying a topic.
@@ -605,7 +608,7 @@ In addition to the document-topic distributions, the \ac{ATM} learns representat
 To the best of our knowledge, the \ac{ATM} was only used for a software engineering task in the work of Linstead \etal for mining developer activities on the Eclipse source code~\cite{linstead2007eclipseeeveloper,Linstead2009Sourcerer:Repositories}.
 When applied to historical bug reports, each developer who has contributed to bug fixing can be described as a distribution over topics.
 
-\section{Mining Bug Reports with Author-Topic-Models}
+\section{Mining Bug Reports with Author-Topic Models}
 \label{section: atm}
 
 The approach \ac{DRETOM} follows three steps.
@@ -622,13 +625,13 @@ Our third approach makes full use of the \ac{ATM} by modeling developers as well
 In the remainder of this work, we view each bug report as a document consisting of its title and a more detailed description.
 Discussions below the bug report are not taken into account, as they are not available during the entire lifecycle of a bug, especially not during the first assignment.
 When applying topic models, it is common to undertake several preprocessing steps, in order to remove noise in the vocabulary~\cite{chen2016survey}.
-It further reduces the size of the vocabulary thus accelerating the computation time.
+It further reduces the size of the vocabulary, thus accelerating the computation time.
 Our preprocessing pipeline follows the best-practice recommendations systematically studied by Schofield \etal~\cite{Schofield2017UnderstandingAllocation,Schofield2017PullingModels,Schofield2017QuantifyingModels}:
 \begin{enumerate}
     \item Removal of URL, hex code, stack trace information, timestamps, line numbers, tokens starting with numerics, tokens consisting of only one character and punctuation,
     \item Lower casing the entire document,
     \item Removal of all words from the English \textit{NLTK Stopwords Corpus}\footnote{\url{http://www.nltk.org/nltk\_data/}}
-    \item We remove words with a frequency less than 5, we further remove words that occur in more than 20\% across all bug reports.
+    \item We remove words with a frequency less than 5; we further remove words that occur in more than 20\% of all bug reports.
 \end{enumerate}
 In particular, in contrast to Xie \etal (2012) we do not apply stemming, as words with the same morphological roots are often placed in the same topic, thus making stemming redundant and might damage models~\cite{Schofield2016ComparingModels}.
 After preprocessing, all bug reports are stored as \ac{BOW}.
@@ -651,7 +654,7 @@ The interest of a developer in a topic is computed as
 \begin{align}
     P(d \rightarrow z) = \dfrac{N_{\text{d,z}}}{N_{\text{d}}},
 \end{align}
-where $N_{d,z}$ is the number of bug reports that belong to topic z and were resolved with the participation of developer d, $N_{d}$ is the number of bugs, where the developer has contributed.
+where $N_{d,z}$ is the number of bug reports that belong to topic z and were resolved with the participation of developer d, and $N_{d}$ is the number of bugs, where the developer has contributed.
 
 The expertise component is computed as
 \begin{align}
@@ -665,12 +668,12 @@ For an incoming bug report, its topic distribution is inferred using the trained
 \label{ssec:dratom}
 By replacing the \ac{LDA} model in \ac{DRETOM} with the \ac{ATM}, we end up with a first modification, named \ac{DRATOM}, \ie the probability $P(d \vert z)$ is computed as in the \ac{DRETOM} approach, whereas the probability distribution of a bug over topics is now derived from the \ac{ATM}.
 
-An advantage of the \ac{ATM} against a heuristic method for deriving relations between developers and topics lies in its interpretability, as each developer can be modeled as a distribution over the topics.
+An advantage of the \ac{ATM} over a heuristic method for deriving relations between developers and topics lies in its interpretability, as each developer can be modeled as a distribution over the topics.
 This sort of explainability is particularly interesting for its use in a real-world setting~\cite{Zou2020HowTechniques,Aktas2020AutomatedCase}.
 
 Xie \etal have shown that the quality of the generated developer recommendations is sensitive to its parameter $\theta$. %
 We circumvent this problem by taking the description of a developer as a distribution over topics, learned from the \ac{ATM}, into account.
-From the known probability $P(z \vert d)$ for an arbitrary topic z and developer d, we derive from the Bayes' formula:
+From the known probability $P(z \vert d)$ for an arbitrary topic z and developer d, we derive from Bayes' formula:
 \begin{align}
     P(d \vert z) = \dfrac{P(z \vert d) \cdot P(d)}{P(z)}. \label{eq:DRATOM_Bayes}
 \end{align}
@@ -680,7 +683,7 @@ The probability for a developer can be computed as
 \end{align}
 where $N_{total}$ denotes the number of all bug reports in the training corpus.
 We approximate the marginal probability $P(z)$ using the Dirichlet prior $\alpha$. 
-Written $\alpha$ as the product between its normalization base measure $m$ and its concentration parameter $a_c$, we conclude
+Writing $\alpha$ as the product between its normalization base measure $m$ and its concentration parameter $a_c$, we conclude
 \begin{align}
     m = (m_1, \dots, m_K) = (P(z_1), \dots, P(z_K)).
 \end{align}
@@ -696,14 +699,14 @@ The ranking of developers reduces to a \ac{NN} search.
 \section{Experimental Setup}
 \label{section: experiment}
 To guarantee the reproducibility of our study, we present a detailed description of our experimental setup.
-We start with a description of the data set used in our study and a justification for the chosen preprocessing techniques.
+We start with a description of the dataset used in our study and a justification for the chosen preprocessing techniques.
 We further provide details on the longitudinal evaluation scheme as well as on the chosen topic modeling implementation.
 
 \subsection{Dataset and Preprocessing}
 \label{ssec: dataset}
-In our work, we use a data set presented by Mani \etal, which contains 18269 bug reports from the Mozilla Firefox project, collected between July 1999 to June 2016, with 169 involved developers~\cite{Mani2019Deeptriage:Triaging}.
-We train our model on bug reports with an assigned developer and a status marked as \textit{verified fixed}, \textit{resolved fixed}, or \textit{closed fixed} and consider each bug reports' final assignee as the actual bug resolver.
-We then preprocess the documents as described in \cref{ssec: preprocessing}.
+In our work, we use a dataset presented by Mani \etal, which contains 18\thinspace{}269 bug reports from the Mozilla Firefox project, collected between July 1999 and June 2016, with 169 involved developers~\cite{Mani2019Deeptriage:Triaging}.
+We train our model on bug reports with an assigned developer and a status marked as \textit{verified fixed}, \textit{resolved fixed}, or \textit{closed fixed} and consider each bug report's final assignee as the actual bug resolver.
+We then preprocess the documents as described in \Cref{ssec: preprocessing}.
 Since our proposed approaches use the \ac{ATM} instead of \ac{LDA}, we need enough bug reports in the training data for each developer
 to learn their expertise with regard to certain topics directly from the data.
 Mani \etal  showed that a threshold greater than 20 did not improve the recommendation accuracy on the same dataset~\cite{Mani2019Deeptriage:Triaging}.
@@ -723,7 +726,7 @@ Those set-based metrics have in common that they do not consider the rank as lon
 However, a good developer recommendation approach should place the probably most suitable developer for a bug report at the top of the list.
 This is because the bug triager usually checks the higher ranks in the list and may not proceed to the last one.
 Therefore, errors in the higher ranks are worse than errors in the lower ranks.
-The \ac{MRR} and \ac{MAP}, are more affected by a hit in the first ranks compared to the following ranks~\cite{Sajedi-Badashian2020GuidelinesResearch}.
+The \ac{MRR} and \ac{MAP} are more affected by a hit in the first ranks compared to the following ranks~\cite{Sajedi-Badashian2020GuidelinesResearch}.
 In a sense, they penalize the mistakes in the first ranks more than in subsequent ranks.
 While the \ac{MRR} stops at the first real assignee, this penalization continues for \ac{MAP}, for every incorrect guess until the last real assignee in the list~\cite{Sajedi-Badashian2020GuidelinesResearch}.
 In our case, \ac{MAP} and \ac{MRR} are the same, since there is only one real assignee for each bug report.
@@ -735,14 +738,14 @@ In our experiments we consider the \ac{MRR}@10, which is given by
         0,              & \text{otherwise}
     \end{cases}
 \end{align}
-where $RR$ denotes the reciprocal rank and $\text{rank}_i$ is the rank position of the real assignee for the i$^{th}$ bug report.
+where $RR$ denotes the reciprocal rank and $\text{rank}_i$ is the rank position of the real assignee for the $i^{\text{th}}$ bug report.
 \input{tables/others/tm_implementations}
 
 \subsection{Topic Modeling Implementations}
 
-In our experiments, we use two widely used and actively maintained libraries for topic modeling. \Cref{tab:implementations}, summarizes the features of the different topic modeling libraries.
+In our experiments, we use two widely used and actively maintained libraries for topic modeling. \Cref{tab:implementations} summarizes the features of the different topic modeling libraries.
 \begin{enumerate}
-    \item \textit{Gensim}~\cite{Rehurek2010Gensim} offers an \ac{LDA} implementation based on the original implementation by Blei et al.~\cite{blei2003latent}, that we refer to as \ac{VB}, as well as its online version \ac{OVB} introduced by Hofman et al.~\cite{Hoffman2010OnlineLDA}.
+    \item \textit{Gensim}~\cite{Rehurek2010Gensim} offers an \ac{LDA} implementation based on the original implementation by Blei et al.~\cite{blei2003latent}, that we refer to as \ac{VB}, as well as its online version \ac{OVB} introduced by Hoffman et al.~\cite{Hoffman2010OnlineLDA}.
     Further features of \textit{Gensim} include the automatic hyperparameter estimation of the Dirichlet priors $\alpha$ and $\beta$, as well as a parallel version.
     For the \ac{ATM} we always refer to \textit{Gensim}.
     
@@ -764,7 +767,7 @@ On this exemplary approach, we want to discuss the following research questions:
     \item[RQ1] \textsl{Are the approaches based on the \ac{ATM} able to outperform \ac{DRETOM}?}
 \end{description}
 \begin{description}
-    \item[RQ2] \textsl{How far do the choice of hyperparameter, \ie the number of topics and the Dirichlet prior, affect the approaches for bug triaging tasks?}
+    \item[RQ2] \textsl{How far does the choice of hyperparameters, \ie the number of topics and the Dirichlet prior, affect the approaches for bug triaging tasks?}
 \end{description}
 
 \footnotetext[4]{Asymmetrical \gls{beta} priors are not beneficial~\cite{Wallach2009RethinkingMatter}.}
@@ -850,17 +853,17 @@ We report the mean of ten cross-validation runs of the \ac{MRR}@10 on the \mozff
 
 The \ac{DRETOM} approach using \textit{MALLET} is superior to the other three implementations, with a relative improvement of at least 47\%.
 On average, the \ac{MRR}@10 for \ac{DRETOM} using \textit{MALLET} is 13.1\%.
-For all other implementations using \ac{VB} inference this number is significantly lower, 8.9\% for \textit{Gensim}, and slightly worse for the parallelized \ac{LDA} implementation of \textit{Gensim} (8.3\%) %
+For all other implementations using \ac{VB} inference this number is significantly lower, 8.9\% for \textit{Gensim}, and slightly worse for the parallelized \ac{LDA} implementation of \textit{Gensim} (8.3\%). %
 Our next observation is that the best hyperparameter setting for $\theta$ varies between the different cross-validation splits between 0.0 and 0.3 according to the \ac{MRR}@10.
-Xie \etal report that the average precision and recall has its peak at $\theta = 0.6$ for the Mozilla Firefox project which favors the developer's interest slightly more compared to a developer's expertise~\cite{xie2012dretom}.
-Surprisingly, regardless of the \ac{LDA} implementation \ac{DRETOM} never reaches an optimal value of $\theta$ greater than 0.3 in the first experiment of our reproduction study with respect to the \ac{MRR}@10.
+Xie \etal report that the average precision and recall have their peak at $\theta = 0.6$ for the Mozilla Firefox project which favors the developer's interest slightly more compared to a developer's expertise~\cite{xie2012dretom}.
+Surprisingly, regardless of the \ac{LDA} implementation, \ac{DRETOM} never reaches an optimal value of $\theta$ greater than 0.3 in the first experiment of our reproduction study with respect to the \ac{MRR}@10.
 Across all cross-validation splits the \ac{MRR}@10 peaks at $\theta = 0.0$ in 50\% of the cases, \ie the recommendation is completely based on a developer's expertise.
 
 Since all \ac{LDA} implementations using \ac{VB} perform significantly worse than the Gibbs implementation used in \textit{MALLET}, we devote our attention to the question of whether the differences with respect to the \ac{MRR}@10 are due to insufficient convergence of the models trained with \ac{OVB}.
 Particularly decisive are the training parameters \gls{numiterationsvb} and \gls{numiterationsgibbs} to make sure the models have enough iterations to converge.
 We increase the number of iterations to \gls{numiterationsvb} = 400 in the case of \textit{Gensim}.
 Following the original implementation, the number of Gibbs iterations in our first experiment was relatively low
-with $i_{CGS}=100$, compared to other tool's default values. 
+with $i_{CGS}=100$, compared to other tools' default values. 
 We therefore increase the value to $i_{CGS}=1000$.
 \textit{Gensim}'s default value for the maximum number of iterations for updating the document-topic distribution within one E-step is $i_{VB}=50$.
 The impact of the modified learning parameters on the \ac{MRR}@10 is presented in \Cref{fig:Exp2}.
@@ -932,18 +935,18 @@ The impact of the modified learning parameters on the \ac{MRR}@10 is presented i
 
 For \textit{MALLET}, the increase of the number of Gibbs iterations from 100 to 1000 does not affect the average \ac{MRR}@10 across the ten cross-validation splits which remains unchanged.
 This confirms the assumption that the \ac{LDA} model trained by \ac{CGS} has already converged previously and a lower number of iterations is indeed sufficient on the Mozilla Firefox dataset.
-In contrast, all \ac{OVB} based implementations benefit from the changed parametrization, but still do not match the \ac{MRR}@10 obtained using \textit{MALLET}.
+In contrast, all \ac{OVB}-based implementations benefit from the changed parametrization, but still do not match the \ac{MRR}@10 obtained using \textit{MALLET}.
 
 \subsection{Learning Asymmetrical Dirichlet Priors}
 \label{sec:exp5}
 We will now focus on the shared hyperparameters between \ac{LDA} and the \ac{ATM} to compare \ac{DRETOM} with our proposed algorithms, starting with the Dirichlet priors.
-All of the approaches presented in \Cref{section: related work} use the default values of the Dirichlet priors, specified in the respective implementation, none of them therefore investigates the effect of an asymmetrical Dirichlet prior.
+All of the approaches presented in \Cref{section: related work} use the default values of the Dirichlet priors, specified in the respective implementation; none of them therefore investigates the effect of an asymmetrical Dirichlet prior.
 However, Wallach \etal (2009) found that an asymmetrical Dirichlet prior over the document-topic distributions has substantial advantages over a symmetrical prior.~\nocite{Wallach2009RethinkingMatter}
 In contrast, an asymmetrical Dirichlet prior over the topic-term distributions provides no known benefit.
 Learning an asymmetrical Dirichlet $\alpha$ prior from the data while keeping the \gls{beta} prior symmetrical 
 increases the robustness of topic models to variations in the number of topics
 and to the highly skewed word frequency distributions common in natural language~\cite{Wallach2009RethinkingMatter}.
-We therefore only consider the case of an asymmtrical prior $\alpha$.
+We therefore only consider the case of an asymmetrical prior $\alpha$.
 Concretely, we learn an asymmetrical prior from the data using \textit{Gensim}'s and \textit{MALLET}'s built-in hyperparameter optimization.
 
 \Cref{fig:Exp3} shows the effects of learning an asymmetrical Dirichlet prior $\alpha$
@@ -1046,7 +1049,7 @@ for the task of developer recommendation measured as \ac{MRR}@10.
         	\addplot[draw=none,white,very thin,fill=plots-5,legend image code/.code={%
         		\draw (0.0cm,-0.025cm) rectangle (0.4cm,0.025cm);
         	}] coordinates {(0,0)};
-        	\addlegendentry{\;\scriptsize DRASIM Jense-Shannon Distance}
+        	\addlegendentry{\;\scriptsize DRASIM Jensen-Shannon Distance}
         	\addplot[draw=none,white,very thin,fill=plots-6,legend image code/.code={%
         		\draw (0.0cm,-0.025cm) rectangle (0.4cm,0.025cm);
         	}] coordinates {(0,0)};
@@ -1057,7 +1060,7 @@ for the task of developer recommendation measured as \ac{MRR}@10.
         	\addlegendentry{\;\scriptsize DRASIM Manhattan Distance}
         \end{axis}%
     \end{tikzpicture}%
-    \caption{Impact of an optimized asymetric $\alpha$ prior on the \acrshort{mrr@10} obtained on the \mozff{} project. \ac{DRATOM}, \ac{DRATOMBayes} and \ac{DRASIM} use the same trained Author-Topic Model (ATM).
+    \caption{Impact of an optimized asymmetric $\alpha$ prior on the \acrshort{mrr@10} obtained on the \mozff{} project. \ac{DRATOM}, \ac{DRATOMBayes} and \ac{DRASIM} use the same trained Author-Topic Model (ATM).
     The mean over a 10-fold cross-validation is reported.}
     \label{fig:Exp3}
 \end{figure}
@@ -1080,16 +1083,16 @@ Our novel approach \ac{DRASIM} seems inferior and practically useless compared t
 
 The last remaining hyperparameter that needs to be considered is the number of latent topics $K$.
 Xie et al. applied a heuristic to determine the number of topics to $K=20$ in their corpus~\cite{xie2012dretom}.
-If we would adapt their method, we would use $K=30$ as the number of topics.
-However determining the ideal number of topics for a topic model is still an open question, and should therefore be investigated in our experiments~\cite{Hasan2021NumTopics}.
+If we adapted their method, we would use $K=30$ as the number of topics.
+However, determining the ideal number of topics for a topic model is still an open question, and should therefore be investigated in our experiments~\cite{Hasan2021NumTopics}.
 
 \Cref{tab:exp6-mozilla-firefox-20-30-40-50-60-mrr@10} shows how increasing the number of topics affects the choice of the optimal value for $\theta$ for \ac{DRETOM} and \ac{DRATOM} as well as our other proposed approaches with regard to the \ac{MRR}@10.
 
 It becomes apparent that all compared approaches benefit from a larger number of topics but to different degrees.
 As in all previous experiments, the \ac{CGS}-based \ac{LDA} implementation of \textit{MALLET} consistently outperformed the \ac{VB}-based implementation of \textit{Gensim} independently of the number of topics and $\theta$ by margins of up to 35\%. 
 The optimal value for \ac{DRETOM}'s hyperparameter is not constant,
-even when averaged across all cross-validation folds, and increases at different rates depending on the \ac{LDA} implementations to $\theta = 0.2$ at $K=60$.
-This underlines the sensitivity of \ac{DRETOM} from an optimal choice of $\theta$ which also showed this deficiency in all previous experiments.
+even when averaged across all cross-validation folds, and increases at different rates depending on the \ac{LDA} implementation to $\theta = 0.2$ at $K=60$.
+This underlines the sensitivity of \ac{DRETOM} to an optimal choice of $\theta$ which also showed this deficiency in all previous experiments.
 Even more affected by this problem is \ac{DRATOM}, the same developer recommendation approach using \ac{ATM}.
 However, the latter outperforms the \ac{DRETOM} approach,
 regardless of the used \ac{LDA} implementation, the number of topics, and even the value for $\theta$ by margins of up to 40\%.
@@ -1104,7 +1107,7 @@ Though \ac{DRASIM} achieves worse results than all other approaches with regard 
 The internal threat to validity mainly lies in the implementation of the studied baseline approach \ac{DRETOM}.
 Our approach based on the \ac{ATM} used the implementation provided by \textit{Gensim}, which uses \ac{VB} and its online version \ac{OVB}.
 A direct comparison between the \textit{MALLET}-based \ac{DRETOM} and ours is therefore not possible.
-However, our first experiment indicates the prevalence of \ac{CGS} over \ac{VB} and its online version.
+However, our first experiment indicates the superiority of \ac{CGS} over \ac{VB} and its online version.
 Therefore, we think that an implementation of the \ac{ATM} based on \ac{CGS} can increase the competitiveness of our findings. 
 
 The main threat for generalization is that we reported our observations only from the conducted experiments on the Mozilla Firefox project.
@@ -1123,14 +1126,14 @@ We conducted experiments on a large dataset from the Mozilla Firefox project to 
 The results show that
 \begin{enumerate}
     \item The chosen topic modeling library can have a large impact on the bug triaging results.
-    \item The approaches based on the \ac{ATM} are able to outperform the \textit{DRETOM} approach
+    \item The approaches based on the \ac{ATM} are able to outperform the \textit{DRETOM} approach.
     \item The hyperparameters $\alpha$ and $K$ can have a significant impact on the developer recommendation results.
 \end{enumerate}
 
 One direction for future work would be the modification of our approaches \ac{DRATOM}, \ac{DRATOMBayes} and \ac{DRASIM} by taking additional categorical features of bug reports into account.
 There are also topic models that were conceptualized for short documents, that bugs are associated with.
 Further experiments should be conducted, where our approaches are then compared to more modern approaches.
-Furthermore, datasets with more than one assigned developer for each bug report would be interesting to observe with regards to a different definition of the ground truth.
+Furthermore, datasets with more than one assigned developer for each bug report would be interesting to observe with regard to a different definition of the ground truth.
 
 \section*{\uppercase{Acknowledgements}}
 \label{sec:acknowledgements}

@@ -37,11 +37,22 @@ DOI: [10.5220/0011045100003176](https://doi.org/10.5220/0011045100003176) · Aut
 
 The SciTePress template files (`article.cls`, `SCITEPRESS.sty`, `apalike.sty`, `apalike.bst`) are bundled in `src/` and take precedence over the TeX Live versions.
 `atzberger2022-mining-expertise-as-submitted.pdf` was built with TeX Live 2021 (pdfTeX 1.40.23), hence the TeX Live 2021 container; the build reproduces it (identical text and layout).
+On `main`, the build produces the revised version (`v1.1-revised`). Check out `v1.0-camera-ready` to reproduce `atzberger2022-mining-expertise-as-submitted.pdf`.
 The build compiles a scratch copy of `src/` inside the container, so the ORCID logo (`orcid.eps`) can be converted to PDF.
 
 ## Versions
 
 - [`v1.0-camera-ready`](https://github.com/dl-archive/article.2022-enase-mining-expertise/tree/v1.0-camera-ready) – sources of the author's version (camera-ready plus the SciTePress author-version notice on the first page)
+- [`v1.1-revised`](https://github.com/dl-archive/article.2022-enase-mining-expertise/tree/v1.1-revised) – author's revised version (2026-11-11): ORCID iD, grammar and typo fixes, see [Revisions](#revisions)
+
+## Revisions
+
+`v1.1-revised` (2026-11-11) corrects errors in the author's version without changing its content or layout.
+Every page carries the note "Author's revised version (2026-11-11). Version of record: https://doi.org/10.5220/0011045100003176".
+
+- ORCID iD of Jürgen Döllner as a linked icon next to his name (a footnote would reflow the first page).
+- Typos: "Hoffman et al." (was "Hofman"), "asymmetrical", "asymmetric", "Jensen-Shannon" (Figure 3 legend), "were achieved" (Table 3), "18 269" (number format as in the abstract), "(8.3%)." (missing full stop), "approach." (missing full stop in the conclusions).
+- Grammar and word choice: "; most of these approaches", "which is based on", "between July 1999 and June 2016" (2×), "Section" (3×, capitalization), "the highest number of comments", "which adjusts", "based on their title", "remain at the default settings", "which also incorporates", "overview of" (2×), "By far the most popular", "Author-Topic Models", "the vocabulary, thus", "less than 5; we", "20% of all", "and $N_d$ is", "over a heuristic", "from Bayes' formula", "Writing α as the product", "dataset" (2×), "bug report's final", "Section 4.1" (capitalized reference), "MRR and MAP are", "$i^{th}$", "summarizes" (no comma), "How far does the choice of hyperparameters", "have their peak", "implementation, DRETOM", "other tools' default", "OVB-based", "; none of them", "If we adapted", "However, determining", "LDA implementation", "sensitivity of DRETOM to", "superiority of CGS", "with regard to", "cross-validation".
 
 ## Citation
 
