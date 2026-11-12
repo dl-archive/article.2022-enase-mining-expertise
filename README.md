@@ -4,7 +4,7 @@ Daniel Atzberger, Jonathan Schneider, [Willy Scheibel](https://orcid.org/0000-00
 
 *Proceedings of the 17th International Conference on Evaluation of Novel Approaches to Software Engineering - ENASE (ENASE '22)*, April 25–26, 2022, online. SciTePress, pp. 107–118.
 
-DOI: [10.5220/0011045100003176](https://doi.org/10.5220/0011045100003176) · Author's version: [Zenodo](https://doi.org/10.5281/zenodo.24121766) · [ResearchGate](https://www.researchgate.net/publication/360230384)
+[![Version of record: 10.5220/0011045100003176](https://img.shields.io/badge/Version_of_record-10.5220%2F0011045100003176-007ec6)](https://doi.org/10.5220/0011045100003176) [![Author's version: 10.5281/zenodo.24121766](https://img.shields.io/badge/Author%27s_version-10.5281%2Fzenodo.24121766-007ec6)](https://doi.org/10.5281/zenodo.24121766) · [ResearchGate](https://www.researchgate.net/publication/360230384)
 
 **Best Student Paper Award**, ENASE 2022.
 
